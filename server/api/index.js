@@ -40,4 +40,11 @@ app.get('/employees', (req, res) => {
   });
 })
 
+app.get('/armin', (req, res) => {
+  const query = "INSERT INTO EMPLOYEE VALUES (2,'ARMIN', '199', 'programmer','white','toronto','t','Y')"
+  connection.query(query, (err, result) => {
+    res.json(result)
+  });
+})
+
 app.listen(8080, () => console.log('Job Dispatch API running on port 8080!'));

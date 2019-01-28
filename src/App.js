@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import { NewEmployeeModal } from './components/new-employee-form'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class App extends React.Component {
@@ -10,9 +11,12 @@ class App extends React.Component {
   }
   
   componentWillMount = () => {
-    fetch('http://localhost:8080/api/employees')
+    fetch('http://localhost:8080/employees')
       .then(response => response.json())
-      .then(employees => this.setState({ employees }))
+      .then(employees => {
+        console.log(employees)
+        this.setState({ employees })
+      })
   }
 
 
@@ -77,6 +81,7 @@ class App extends React.Component {
         <ReactTable data={employees} columns={cols} />
         <input onChange={ (event) => { this.setState({ input: event.target.value }) } }/>
         <button onClick={ () => { this.sendToServer() } }> send </button>
+        <NewEmployeeModal open={true} close={()=>{}} />
       </div>
     );
   }

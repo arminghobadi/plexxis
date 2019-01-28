@@ -1,15 +1,20 @@
 CREATE TABLE EMPLOYEE (
-  EmployeeId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  FirstName    VARCHAR (40)                      NULL,
-  LastName     VARCHAR (40)                      NULL,
-  Phone        VARCHAR (20)                      NULL,
-  Address      VARCHAR (100)                     NULL,
-  City         VARCHAR (30)                      NULL,
-  FullName     VARCHAR (100)                     NULL,
-  Email        VARCHAR (100)                     NULL,
-  Pin          VARCHAR (100)                     NULL,
-  EmployeeCode VARCHAR (10) UNIQUE               NOT NULL
-) ENGINE = INNODB;
+  id         INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name       VARCHAR (40)                NOT NULL,
+  code       VARCHAR (20)                NULL,
+  profession VARCHAR (100)               NULL,
+  color      VARCHAR (30)                NULL,
+  city       VARCHAR (100)               NULL,
+  branch     VARCHAR (100)               NULL,
+  assigned   CHAR (1)                         NULL
+);
 
-INSERT INTO EMPLOYEE (FirstName, LastName, Phone, Address, City, FullName, Email, Pin, EmployeeCode)
-VALUES ('laalohaillaallah', 'ghobadi', 945214775, 'sherbourne st', 'toronto', 'armin laalohaillaallah ghobadi', 'armin@smack.chat', 1, '11')
+INSERT INTO EMPLOYEE VALUES (
+  1, 
+  "Kyle Lowry", 
+  "F100", 
+  "Drywall Installer", 
+  "#FF6600", 
+  "Brampton", 
+  "Abacus", 
+  "Y")

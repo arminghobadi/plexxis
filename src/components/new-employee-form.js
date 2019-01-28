@@ -3,7 +3,7 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-export class newEmployeeModal extends React.Component {
+export class NewEmployeeModal extends React.Component {
   state = {
     id: this.props.nextId,
     name: '',
@@ -16,7 +16,7 @@ export class newEmployeeModal extends React.Component {
   }
 
   componentWillMount = () => {
-    fetch('http://localhost:8080/api/employees')
+    fetch('http://localhost:8080/employees')
       .then(response => response.json())
       .then(employees => this.setState({ employees }))
   }
@@ -59,74 +59,37 @@ export class newEmployeeModal extends React.Component {
               <Input type="textarea" name="name" id="name" placeholder="name" />
             </FormGroup>
             <FormGroup>
-              <Label for="exampleSelect">Select</Label>
-              <Input type="select" name="select" id="exampleSelect">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Input>
+              <Label for="code">Code</Label>
+              <Input type="textarea" name="select" id="code"/>
             </FormGroup>
             <FormGroup>
-              <Label for="exampleSelectMulti">Select Multiple</Label>
-              <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Input>
+              <Label for="profession">Profession</Label>
+              <Input type="textarea" name="select" id="professsion"/>
             </FormGroup>
             <FormGroup>
-              <Label for="exampleText">Text Area</Label>
-              <Input type="textarea" name="text" id="exampleText" />
+              <Label for="color">Color</Label>
+              <Input type="textarea" name="select" id="color"/>
             </FormGroup>
             <FormGroup>
-              <Label for="exampleFile">File</Label>
-              <Input type="file" name="file" id="exampleFile" />
-              <FormText color="muted">
-                This is some placeholder block-level help text for the above input.
-                It's a bit lighter and easily wraps to a new line.
-          </FormText>
+              <Label for="city">City</Label>
+              <Input type="textarea" name="select" id="city"/>
             </FormGroup>
-            <FormGroup tag="fieldset">
-              <legend>Radio Buttons</legend>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio1" />{' '}
-                  Option one is this and that—be sure to include why it's great
-            </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio1" />{' '}
-                  Option two can be something else and selecting it will deselect option one
-            </Label>
-              </FormGroup>
-              <FormGroup check disabled>
-                <Label check>
-                  <Input type="radio" name="radio1" disabled />{' '}
-                  Option three is disabled
-            </Label>
-              </FormGroup>
+            <FormGroup>
+              <Label for="branch">Branch</Label>
+              <Input type="textarea" name="select" id="branch"/>
             </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" />{' '}
-                Check me out
-          </Label>
+            <FormGroup>
+              <Label for="assigned">Assigned ? </Label>
+              <Input type="textarea" name="select" id="assigned"/>
             </FormGroup>
             <Button>Submit</Button>
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          <Button color="primary" onClick={() => {console.log('yay')}}>Do Something</Button>{' '}
+          <Button color="secondary" onClick={() => {console.log('yay')}}>Cancel</Button>
         </ModalFooter>
       </Modal>
     );
   }
 }
-
-export default App;
