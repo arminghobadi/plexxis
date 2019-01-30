@@ -1,17 +1,10 @@
 # Plexxis Interview Exercise
 
 ## Requirements:
-Docker
-Node
-yarn
+Please make sure you have `docker` and `node` and `yarn` installed on your machine
 
 ## Installation Guid:
-- to run the server, run the following commands from the root directory of this repository
-`cd server`
-`docker-compose up`
-- to fully restart the server, run the `./docker-reset.sh` script inside `server` directory
-- to run the client, run the following commands from the root directory of this repository
-`yarn`
-`yarn start`
-
-  * Send us the link when you are done the exercise (pglinker at plexxis dot com).
+To run the server, go to the `server` directory, and run `docker-compose up`
+To fully restart the server, run the `./docker-reset.sh` script inside `server` directory
+To run the client, first install the dependencies by running `yarn` from the main directory
+Then run `yarn start`
