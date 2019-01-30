@@ -7,28 +7,23 @@ import { EmployeeModal } from './employee.modal';
 
 export class MainPage extends React.Component {
   state = {
-    input: '',
     employees: [],
     employeeModalOpen: false,
     selectedEmp: null,
   }
   
-  componentWillMount = () => {
-    fetch('http://localhost:8080/employees')
-      .then(response => response.json())
-      .then(employees => {
-        console.log(employees)
-        this.setState({ employees })
-      })
+  async componentWillMount() {
+    const fetchRes = await fetch('http://localhost:8080/employees')
+    const employees = await fetchRes.json()
+    this.setState({ employees })
   }
 
-  toggle = () => {
+  toggle(){
     this.setState({ employeeModalOpen: !this.state.employeeModalOpen })
   }
 
-
   render() {
-    const { employees, input, employeeModalOpen, selectedEmp } = this.state;
+    const { employees, employeeModalOpen, selectedEmp } = this.state;
   
     return (
       <div>
@@ -40,20 +35,22 @@ export class MainPage extends React.Component {
             }}
           currentEmployee={selectedEmp} 
           open={ employeeModalOpen } 
-          close={ this.toggle } />
+          close={ () => this.toggle() } />
 
+        { /* Components */ }
         <NavBar newEmps={ (emps) =>{ this.setState({employees: emps}) }} />
         <ReactTable 
           data={employees} 
           columns={cols}
+          style={{cursor: 'pointer'}}
           getTrProps={ (state, rowInfo, column, instance) => ({
               onClick: () => this.setState({ selectedEmp: rowInfo.original, employeeModalOpen: true })
           })} />
-          <Button 
-            style={{ position: 'sticky', zIndex: '9999', bottom: '20px', left: '20px', backgroundColor: '#1f04d8ad', borderRadius: '25px'}} 
-            onClick={ ()=>{ this.setState({ selectedEmp: null, employeeModalOpen: true }) } } >
-            +
-          </Button>
+        <Button 
+          style={{ position: 'sticky', zIndex: '9999', bottom: '20px', left: '20px', backgroundColor: '#1f04d8ad', borderRadius: '25px'}} 
+          onClick={ ()=>{ this.setState({ selectedEmp: null, employeeModalOpen: true }) } } >
+          +
+        </Button>
       </div>
     );
   }

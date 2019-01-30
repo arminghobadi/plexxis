@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactTable from 'react-table'
 import 'react-table/react-table.css'
-import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const INIT_STATE = {
   name: '',
@@ -23,7 +22,7 @@ export class EmployeeModal extends React.Component {
         pe: props.currentEmployee
       }
     }
-    
+    return null
   }
 
   async addEmployee() {
@@ -39,20 +38,6 @@ export class EmployeeModal extends React.Component {
     })
     const allEmps = await fetchRes.json()
     this.props.newEmps(allEmps)
-  }
-
-  createForm(fields){
-    return fields.reduce( (acc, field) => {
-      acc.push(
-        <FormGroup row >
-          <Label sm={2}>{field}:</Label>
-          <Col sm={10}>
-            <Input type='text' value={this.state[field]} id={[field]} placeholder={`Input ${field}`} onChange={(event) => { this.setState({ [field]: event.target.value }) }} />
-          </Col>
-        </FormGroup>
-      )
-      return acc
-    },[])
   }
 
   async updateEmployee(){
@@ -84,12 +69,31 @@ export class EmployeeModal extends React.Component {
     this.props.newEmps(allEmps)
   }
   
+  createForm(fields){
+    return fields.reduce( (acc, field) => {
+      acc.push(
+        <FormGroup key={[field]} row >
+          <Label sm={2}>{field}:</Label>
+          <Col sm={10}>
+            <Input 
+              type='text' 
+              value={ this.state[field] } 
+              id={ [field] } 
+              placeholder={ `Input ${field}` } 
+              onChange={ (event) => { this.setState({ [field]: event.target.value }) } } 
+            />
+          </Col>
+        </FormGroup>
+      )
+      return acc
+    },[])
+  }
 
   render() {
     const { open, close, currentEmployee } = this.props
     
     return (
-      <Modal isOpen={open} toggle={close} >
+      <Modal isOpen={open} toggle={ () => close() } >
         <ModalHeader>{ currentEmployee ? 'Edit Employee' : 'Add New Employee'}</ModalHeader>
         <ModalBody>
           <Form>
@@ -115,7 +119,6 @@ export class EmployeeModal extends React.Component {
             :
               <Button color='primary' onClick={ async () => { this.addEmployee(); close() } } >Add Employee</Button>
           }
-          
           <Button color='secondary' onClick={ () => { close() } }>Cancel</Button>
         </ModalFooter>
       </Modal>
