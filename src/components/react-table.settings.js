@@ -1,11 +1,10 @@
 import React from 'react'
-import './react-table.settings.css'
 
 export const cols = [
   {
     Header: 'ID',
     accessor: 'id',
-    Cell: props => <span className='custom-row' style={{color: props.row._original.color}}>{props.value}</span>
+    Cell: props => <span style={{color: props.row._original.color}}>{props.value}</span>
   },
   {
     Header: 'Name',
