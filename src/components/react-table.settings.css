@@ -1,0 +1,7 @@
+.custom-row {
+  background-color: white;
+}
+
+.custom-row:hover{
+  background-color: gray;
+}
